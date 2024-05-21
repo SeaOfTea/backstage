@@ -1,0 +1,88 @@
+Item types:
+
+// link
+
+{
+  to: string | Rouref | ExternalRouteRef,
+  title: string,
+  icon: IconComponent
+}
+
+// action: modal/list
+
+{
+  title: string;
+  icon: IconComponent;
+  secondary: (item: { active: boolean, deactivate: () => void }) => JSX.Element; 
+}
+
+// drawer
+{
+  type: 'drawer';
+  title: string;
+  icon: IconComponent;
+}
+
+// dropdown
+{
+  type: 'dropdown';
+  title: string;
+  icon: IconComponent;
+  select?: true;
+}
+
+{
+  type: 'custom';
+  element: JSX.Element;
+}
+
+---
+
+Item Examples:
+
+
+// drawer
+createNavItemExtension({
+  type: 'drawer',
+  icon: CreateComponentIcon,
+  title: 'Create...',
+  attachTo: { id: 'nav-item:search', input: 'items' },
+})
+
+// link
+
+- route ref
+
+createNavItemExtension({
+  name: 'new',
+  to: newComponentRouteRef,
+  icon: NewIcon,
+  title: 'New Component',
+  attachTo: { id: 'nav-item:search', input: 'items' },
+})
+
+- external route ref
+
+createNavItemExtension({
+  name: 'register',
+  to: registerComponentRouteRef,
+  icon: RegisterIcon,
+  title: 'Register Component',
+  attachTo: { id: 'nav-item:search', input: 'items' },
+})
+
+- string
+createNavItemExtension({
+  to: 'https://backstage.io/docs,
+  icon: DocsIcon,
+  title: 'Docs'
+})
+
+// modal
+
+createNavItemExtension({
+  type: 'modal',
+  title: 'Search',
+  icon: SearchIcon,
+  secondary: (item: { active: boolean, toggle: () => void }) => <SearchModal open={item.active} toggleModal={item.toggle} />
+})
