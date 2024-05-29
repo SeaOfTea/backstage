@@ -19,8 +19,8 @@ The following example shows how to get access to the database service in your `e
 import {
   coreServices,
   createBackendPlugin,
+  resolvePackagePath
 } from '@backstage/backend-plugin-api';
-import { resolvePackagePath } from '@backstage/backend-common';
 
 createBackendPlugin({
   pluginId: 'example',
